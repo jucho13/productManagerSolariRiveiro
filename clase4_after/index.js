@@ -15,5 +15,6 @@ let persistirProduct = async () => {
     console.log(products);
     let getProductsbyID=await productManager.getProductsbyID(5);
     await productManager.updateProduct('Manteca','Lactear',300,'http://ser.png','AE2423',150,3);
+    await productManager.deleteProduct(2);
 };
 persistirProduct();

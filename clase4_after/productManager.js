@@ -186,7 +186,18 @@ class ProductManager {
             sumador--;
         }        
     }
-    
+    deleteProduct = async (id) => {
+        const index = this.#products.findIndex(prod => prod.id === id);
+        console.log(`Producto proximo a ser eliminado: ${this.#products[index].title} ID numero: ${this.#products[index].id}`);
+        this.#products.splice(index, 1);
+        await this.#fileSystem.promises.writeFile(this.#productFilePath, JSON.stringify(this.#products, null, 2, '\t'));
+        console.log("Lista actualizada de productos desde el programa: ");
+        console.log(this.#products);
+        console.log("Lista actualizada de productos desde el archivo: ");
+        let productsFile = await this.#fileSystem.promises.readFile(this.#productFilePath, "utf-8");
+        console.log(productsFile);
+        console.log("Producto eliminado correctamente");
+    }
 }   
     
 
